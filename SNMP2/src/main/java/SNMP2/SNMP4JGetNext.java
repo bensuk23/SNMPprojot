@@ -30,7 +30,7 @@ public class SNMP4JGetNext
             target.setAddress(targetAddress);
             target.setRetries(2);
             target.setTimeout(1500);
-            target.setVersion(SnmpConstants.version1);
+            target.setVersion(SnmpConstants.version2c);
             PDU pdu = new PDU();
             pdu.add(new VariableBinding(new OID(new int[] {1,3,6,1,2,1,1,4})));
             pdu.add(new VariableBinding(new OID(new int[] {1,3,6,1,2,1,1,5})));
