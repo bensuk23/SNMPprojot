@@ -1,4 +1,6 @@
 package SNMP2;
+
+
 import org.snmp4j.PDU;
 import org.snmp4j.Snmp;
 import org.snmp4j.event.ResponseEvent;
@@ -8,16 +10,11 @@ import org.snmp4j.smi.VariableBinding;
 
 import java.util.List;
 
-public class SnmpListener implements ResponseListener
+public class SnmpListenerSet implements ResponseListener
 {
     private Snmp snmpManager;
-
-    private List<DATAASS> data;
-    public SnmpListener(Snmp s, List<DATAASS> datap)
-    {
-        snmpManager = s;
-        data = datap;
-    }
+    public SnmpListenerSet(Snmp s)
+    { snmpManager = s; }
 
 
     public void onResponse(ResponseEvent event)
@@ -25,7 +22,6 @@ public class SnmpListener implements ResponseListener
         ((Snmp)event.getSource()).cancel(event.getRequest(), this);
         PDU rep = event.getResponse();
         int nValues = rep.size();
-        data.clear();
         for (int i=0; i<nValues; i++)
         {
             VariableBinding vb = rep.get(i);
@@ -35,17 +31,10 @@ public class SnmpListener implements ResponseListener
             System.out.println("Syntax = "+ value.getSyntax());
             System.out.println("SyntaxString = "+ value.getSyntaxString());
 
-            DATAASS temp = new DATAASS(String.valueOf(vb.getOid()),value.toString(),value.getSyntaxString(),"161") ;
-
-            data.add(temp);
-
-
 
         }
-
         synchronized(snmpManager)
         {
-
             snmpManager.notify();
         }
 

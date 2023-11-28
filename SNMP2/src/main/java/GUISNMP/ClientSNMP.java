@@ -4,11 +4,12 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import Controller.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.io.IOException;
 
 public class ClientSNMP extends JFrame
 {
+    public Object get;
+
     public JTextField getTextadresse() {
         return textadresse;
     }
@@ -49,12 +50,12 @@ public class ClientSNMP extends JFrame
         this.jScrollPaneAffichageRequete = jScrollPaneAffichageRequete;
     }
 
-    public JButton getParamètreAvancéButton() {
-        return paramètreAvancéButton;
+    public JButton getParametreAvanceButton() {
+        return parametreAvanceButton;
     }
 
-    public void setParamètreAvancéButton(JButton paramètreAvancéButton) {
-        this.paramètreAvancéButton = paramètreAvancéButton;
+    public void setParametreAvanceButton(JButton parametreAvanceButton) {
+        this.parametreAvanceButton = parametreAvanceButton;
     }
 
     public JButton getButtonClear() {
@@ -86,10 +87,11 @@ public class ClientSNMP extends JFrame
     private JTable tableAffichageRequete;
     private JPanel panelPrincipale;
     private JScrollPane jScrollPaneAffichageRequete;
-    private JButton paramètreAvancéButton;
+    private JButton parametreAvanceButton;
     private JButton buttonClear;
     private JComboBox comboOperations;
     private JButton GOButton;
+
 
     public ClientSNMP()
     {
